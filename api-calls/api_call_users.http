@@ -1,0 +1,26 @@
+#User calls#
+
+@base_url=http://localhost:3000/api/users/
+
+
+###
+post {{base_url}}
+Content-Type: application/json
+
+{
+    "name":"Maarten",
+    "email":"maarten@vives.be",
+    "password":"12345",
+    "isAdmin":"true"
+}
+
+###
+get {{base_url}}/me
+Content-Type: application/json
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYmU5YmQ4N2M4ODc1Zjk5ODUyMzUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjIyNzN9.JTuxJ7oNExSD1vkXAKIwU4tj6eukvIOtTBVNwK3M6sU
+
+###
+delete {{base_url}}/64be8e3ed0850c050fe0608b
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYmU5YmQ4N2M4ODc1Zjk5ODUyMzUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjIyNzN9.JTuxJ7oNExSD1vkXAKIwU4tj6eukvIOtTBVNwK3M6sU
+
