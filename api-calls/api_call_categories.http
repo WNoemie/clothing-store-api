@@ -1,16 +1,36 @@
 # Categorie calls #
 
 
-@base_URL=http://localhost:3000/api/categories
+@base_url=http://localhost:3000/api/categories
 
-get {{base_URL}}
+get {{base_url}}
+
+###
+get {{base_url}}/64bed6d421c56548c5d7f5f4
 
 ###
 
-POST {{base_URL}}
+POST {{base_url}}
 Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjI4Mzg5fQ.nLNvX89zZOTEhC3XwwAWO24FFmEHEtnPEvQxRFunc44
 
 {
-  "naam": "Winter",
-  "beschrijving": "Winter Collectie"
+  "naam": "Lente",
+  "beschrijving": "Lente Collectie"
 }
+
+###
+PUT {{base_url}}/64bed6d421c56548c5d7f5f4
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjI4Mzg5fQ.nLNvX89zZOTEhC3XwwAWO24FFmEHEtnPEvQxRFunc44
+
+{
+  "naam": "Winter2",
+  "beschrijving": "Winter2 Collectie"
+}
+
+
+### Auth en Admin
+DELETE {{base_url}}/64bed72b77a492a9c226e26c
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjg4Mjd9.qAEDk9rYJFlZfq0Uf-uCOirCukjyTBQagPjcRdrumXA
