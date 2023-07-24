@@ -1,19 +1,6 @@
-# Shirt Calls#
-# Variables
+# Shirt Calls #
+
 
 @base_URL=http://localhost:3000/api/shirts
 
 get {{base_URL}}
-
-###
-POST {{base_URL}}
-Content-Type: application/json
-
-{
-  "naam": "Cool Shirt",
-  "beschrijving": "This is a cool shirt.",
-  "prijs": 29.99,
-  "categorie": "614b63be19f8c755b8740622", // Replace with an existing category ID from your database
-  "maten": ["S", "M", "L"],
-  "kleuren": ["Blue", "White"]
-}
