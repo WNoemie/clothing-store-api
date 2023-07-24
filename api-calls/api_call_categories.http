@@ -1,0 +1,16 @@
+# Categories calls #
+
+
+@base_URL=http://localhost:3000/api/categories
+
+get {{base_URL}}
+
+###
+
+POST {{base_URL}}
+Content-Type: application/json
+
+{
+  "naam": "Winter",
+  "beschrijving": "Winter Collectie"
+}
