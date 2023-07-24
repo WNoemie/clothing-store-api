@@ -1,7 +1,9 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const auth = require('../middleware/auth');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+
 const userSchema = new mongoose.Schema({
  name: {
  type: String,
