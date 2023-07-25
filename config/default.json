@@ -1,4 +1,4 @@
 {
     "jwtPrivateKey":"",
-    "db":"mongodb://34.77.228.196/clothing-store"
+    "db":"mongodb://34.77.228.196:27017/clothing-store"
 }
