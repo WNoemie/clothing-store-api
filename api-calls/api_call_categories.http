@@ -1,7 +1,7 @@
 # Categorie calls #
 
 
-@base_url=http://localhost:3000/api/categories
+@base_url=http://34.77.228.196:3000/api/categories
 
 get {{base_url}}
 
