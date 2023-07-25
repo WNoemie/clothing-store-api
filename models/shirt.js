@@ -48,7 +48,7 @@ function validateShirt(shirt) {
     naam: Joi.string().min(3).max(255).required(),
     beschrijving: Joi.string().min(10).required(),
     prijs: Joi.number().min(0).required(),
-    categorie: Joi.objectId().required(),
+    categorie: Joi.string().hex().length(24).required(), // Validate ObjectId
     maten: Joi.array().items(Joi.string().required()).min(1).required(),
     kleuren: Joi.array().items(Joi.string().required()).min(1).required(),
   });

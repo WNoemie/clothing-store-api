@@ -1,6 +1,47 @@
 # Shirt Calls #
 
 
-@base_URL=http://localhost:3000/api/shirts
+@base_url=http://localhost:3000/api/shirts
 
-get {{base_URL}}
+get {{base_url}}
+
+###
+get {{base_url}}/64bfa64012bc3fa297a192c8
+
+
+###
+
+POST {{base_url}}
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODA4MjV9.JzXEr1wbpVKO5wTy_Bj1juocCLI7AhuRe4Ue--JynZU
+
+{
+    "naam": "Voetbal T-Shirt", 
+    "beschrijving": "Voetbal T-shirt Rode Duivels",
+    "prijs": 49.99, 
+    "categorie": "64bed75a77a492a9c226e26f", 
+    "maten": ["S", "M", "L"], 
+    "kleuren": ["Rood", "Blauw", "Wit"]
+}
+
+
+###
+
+PUT {{base_url}}/64bfa6ddbec73e1fc375e7ec
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODA4MjV9.JzXEr1wbpVKO5wTy_Bj1juocCLI7AhuRe4Ue--JynZU
+
+{
+    "naam": "Jongens Voetbal T-Shirt", 
+    "beschrijving": "Voetbal T-shirt Rode Duivels",
+    "prijs": 49.99, 
+    "categorie": "64bed75a77a492a9c226e26f", 
+    "maten": ["S", "M", "L"], 
+    "kleuren": ["Rood", "Blauw", "Wit"]
+}
+
+###
+delete {{base_url}}/64bfa6ddbec73e1fc375e7ec
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODA4MjV9.JzXEr1wbpVKO5wTy_Bj1juocCLI7AhuRe4Ue--JynZU
+

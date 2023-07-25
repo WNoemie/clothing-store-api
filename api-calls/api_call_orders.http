@@ -1,0 +1,61 @@
+# Order Calls #
+
+@base_url=http://localhost:3000/api/orders
+
+get {{base_url}}
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODQxMTJ9.EEI4t_YMCpWPUgY2FEMPtSYCs4UKYAwxnxkLBG5Bohs
+
+###
+get {{base_url}}/64bfade645229ef738dbc81c
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODQxMTJ9.EEI4t_YMCpWPUgY2FEMPtSYCs4UKYAwxnxkLBG5Bohs
+
+
+###
+post {{base_url}}
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODQxMTJ9.EEI4t_YMCpWPUgY2FEMPtSYCs4UKYAwxnxkLBG5Bohs
+
+
+{
+    "user": "64bed1282b8ac9a20cf18c74",
+  "shirts": [
+    {
+      "shirt": "64bfa61412bc3fa297a192c6",
+      "quantity": 2
+    },
+    {
+      "shirt": "64bfabc58df3acdeac6ef4f1",
+      "quantity": 3
+    }
+  ],
+  "totalPrice": 100
+}
+
+
+###
+put {{base_url}}/64bfade645229ef738dbc81c
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODQxMTJ9.EEI4t_YMCpWPUgY2FEMPtSYCs4UKYAwxnxkLBG5Bohs
+
+
+{
+    "user": "64bed1282b8ac9a20cf18c74",
+  "shirts": [
+    {
+      "shirt": "64bfa61412bc3fa297a192c6",
+      "quantity": 3
+    },
+    {
+      "shirt": "64bfabc58df3acdeac6ef4f1",
+      "quantity": 4
+    }
+  ],
+  "totalPrice": 150
+}
+
+###
+DELETE {{base_url}}/64bfb0ed3517f9cca878fcba
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjg4Mjd9.qAEDk9rYJFlZfq0Uf-uCOirCukjyTBQagPjcRdrumXA
