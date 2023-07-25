@@ -11,7 +11,7 @@ get {{base_url}}/64bfa64012bc3fa297a192c8
 
 ###
 
-POST {{base_url}}
+POST http://34.77.228.196:3000/api/shirts
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyODA4MjV9.JzXEr1wbpVKO5wTy_Bj1juocCLI7AhuRe4Ue--JynZU
 
