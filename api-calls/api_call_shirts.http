@@ -1,7 +1,7 @@
 # Shirt Calls #
 
 
-@base_url=http://localhost:3000/api/shirts
+@base_url=http://34.77.228.196:3000/api/shirts
 
 get {{base_url}}
 
