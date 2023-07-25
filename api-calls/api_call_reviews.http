@@ -1,0 +1,37 @@
+# Review Calls #
+
+@base_url=http://localhost:3000/api/reviews
+
+###
+GET {{base_url}}
+
+###
+GET {{base_url}}/64bfde85a59898842a8c3bdf
+
+###
+
+POST {{base_url}}
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjk0NTYwfQ.tZpsmMxLcpS0Y121ru_1ahrZGdqKUVZB0V6bs5RI9pI
+
+{
+  "shirt": "64bfa61412bc3fa297a192c6",
+  "rating": 4,
+  "comment": "This shirt is amazing!"
+}
+
+###
+PUT {{base_url}}/64bfde85a59898842a8c3bdf
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjk0NTYwfQ.tZpsmMxLcpS0Y121ru_1ahrZGdqKUVZB0V6bs5RI9pI
+
+{
+  "shirt": "64bfa61412bc3fa297a192c6",
+  "rating": 5,
+  "comment": "This shirt is perfect!"
+}
+
+###
+DELETE {{base_url}}/64bfde85a59898842a8c3bdf
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjg4Mjd9.qAEDk9rYJFlZfq0Uf-uCOirCukjyTBQagPjcRdrumXA
