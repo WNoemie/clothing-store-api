@@ -40,6 +40,12 @@ describe('Categories Routes', () => {
       expect(res.body.naam).to.equal('Winter');
       expect(res.body.beschrijving).to.equal('Winter Collectie');
     });
+
+    it('should return 404 if an id is not valid', async () => {
+        const invalidId = '123456789123456781234567';
+        const response = await request(server).get(`/api/categories/${invalidId}`);
+        expect(response.status).to.equal(404);
+      });
   });
 
   
