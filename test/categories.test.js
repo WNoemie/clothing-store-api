@@ -95,14 +95,14 @@ describe('Categories Routes', () => {
   describe('PUT /api/categories/:id', () => {
     it('should update a category if a valid id and request are given', async () => {
       const testCategory = new Categorie({
-        naam: 'Test Category',
-        beschrijving: 'Test Description',
+        naam: 'Vakantie Collectie',
+        beschrijving: 'Vakantie shirts',
       });
       await testCategory.save();
 
       const updatedCategoryData = {
-        naam: 'Updated Category',
-        beschrijving: 'Updated Description',
+        naam: 'Vakantie2 Collectie',
+        beschrijving: 'Vakantie2 shirts',
       };
 
       const res = await request(server)
@@ -125,8 +125,8 @@ describe('Categories Routes', () => {
       const invalidId = '123456789123456789123456'; 
 
       const updatedCategoryData = {
-        naam: 'Updated Category',
-        beschrijving: 'Updated Description',
+        naam: 'Vakantie2 shirts',
+        beschrijving: 'vakantie2 shirts',
       };
 
       const res = await request(server)
@@ -146,7 +146,7 @@ describe('Categories Routes', () => {
       });
       await testCategory.save();
 
-      const invalidData = { naam: 'Updated Category' }; //zonder beschrijving = niet compleet
+      const invalidData = { naam: 'Herfst2 Collectie' }; //zonder beschrijving = niet compleet
 
       const res = await request(server)
         .put(`/api/categories/${testCategory._id}`)

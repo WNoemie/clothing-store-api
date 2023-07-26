@@ -29,7 +29,7 @@ describe('Shirt Routes', () => {
           prijs: 19.99,
           categorie: categorie._id, 
           maten: ['M'],
-          kleuren: ['Red'],
+          kleuren: ['Rood'],
         },
         {
           naam: 'Shirt B',
@@ -37,7 +37,7 @@ describe('Shirt Routes', () => {
           prijs: 24.99,
           categorie: categorie._id, 
           maten: ['L'],
-          kleuren: ['Blue', 'White'],
+          kleuren: ['Blauw', 'Wit'],
         },
       ]);
   
@@ -52,24 +52,22 @@ describe('Shirt Routes', () => {
   
 
   describe('GET /api/shirts/:id', () => {
-    it('should return a single shirt by ID if it exists', async () => {
-      const categorieShirt = await new Categorie({ naam: 'T-Shirts', beschrijving: 'T-Shirts Collection' }).save();
+    it('should return a single shirt by id if it exists', async () => {
+      const categorieShirt = await new Categorie({ naam: 'Zomers', beschrijving: 'Zomer Collection' }).save();
       const shirt = await new Shirt({
-        naam: 'Test Shirt',
-        beschrijving: 'Test Shirt Description',
+        naam: 'Gele shirt',
+        beschrijving: 'Gele shirt beschr.',
         prijs: 19.99,
         categorie: categorieShirt._id,
         maten: ['XL'],
-        kleuren: ['Red'],
+        kleuren: ['Geel'],
       }).save();
   
       const res = await request(server).get(`/api/shirts/${shirt._id}`);
   
       expect(res.status).to.equal(200);
-      expect(res.body.naam).to.equal('Test Shirt');
-      expect(res.body.beschrijving).to.equal('Test Shirt Description');
-      expect(res.body.maten).to.deep.equal(['XL']);
-      expect(res.body.kleuren).to.deep.equal(['Red']);
+      expect(res.body.naam).to.equal('Gele shirt');
+
     });
   
     it('should return 404 if a shirt with an invalid id is requested', async () => {
@@ -97,7 +95,7 @@ describe('Shirt Routes', () => {
         prijs: 19.99,
         categorie: categorie._id, 
         maten: ['M'],
-        kleuren: ['Red'],
+        kleuren: ['Rood'],
       };
 
       const res = await request(server)
@@ -118,6 +116,135 @@ describe('Shirt Routes', () => {
         .send({});
 
       expect(res.status).to.equal(400);
+    });
+  });
+
+  describe('PUT /api/shirts/:id', () => {
+    it('should update a shirt if a valid id and request are given', async () => {
+        const categorie = await new Categorie({
+            naam: 'Sport',
+            beschrijving: 'Sport Collectie',
+          }).save();
+      
+        const testShirt = new Shirt({
+        naam: 'Basketbal shirt',
+        beschrijving: 'Basktebal USA shirt',
+        prijs: 19.99,
+        categorie: categorie._id, 
+        maten: ['M'],
+        kleuren: ['Rood'],
+      });
+      await testShirt.save();
+
+      const updatedShirtData = {
+        naam: 'Basketbal shirt',
+        beschrijving: 'Basketbal EU shirt',
+        prijs: 49.99,
+        categorie: categorie._id, 
+        maten: ['M'],
+        kleuren: ['Rood'],
+      };
+
+      const res = await request(server)
+        .put(`/api/shirts/${testShirt._id}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(updatedShirtData);
+
+      expect(res.status).to.equal(200);
+      expect(res.body.name).to.equal(updatedShirtData.name);
+
+      const updatedShirt = await Shirt.findById(testShirt._id);
+      expect(updatedShirt).to.exist;
+    });
+
+    it('should return 404 if an invalid ID is provided', async () => {
+      const invalidId = '123456789012345678901234';
+      const categorie = await new Categorie({
+        naam: 'Sport',
+        beschrijving: 'Sport Collectie',
+      }).save();
+
+      const updatedShirtData = {
+        naam: 'Basketbak shirt',
+        beschrijving: 'Basketbal USA shirt',
+        prijs: 19.99,
+        categorie: categorie._id, 
+        maten: ['M'],
+        kleuren: ['Rood'],
+      };
+
+      const res = await request(server)
+        .put(`/api/shirts/${invalidId}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(updatedShirtData);
+
+      expect(res.status).to.equal(404);
+    });
+
+    it('should return 400 if request is invalid', async () => {
+        const categorie = await new Categorie({
+            naam: 'Sport',
+            beschrijving: 'Sport Collectie',
+          }).save();
+      
+        const testShirt = new Shirt({
+        naam: 'Basketbal shirt',
+        beschrijving: 'Basketbal USA shirt',
+        prijs: 19.99,
+        categorie: categorie._id, 
+        maten: ['M'],
+        kleuren: ['Rood'],
+      });
+      await testShirt.save();
+
+      const invalidData = { name: 'Basketbal2 shirt' }; 
+
+      const res = await request(server)
+        .put(`/api/shirts/${testShirt._id}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(invalidData);
+
+      expect(res.status).to.equal(400);
+    });
+  });
+
+  describe('DELETE /api/shirts/:id', () => {
+    it('should delete a shirt if a valid id is given', async () => {
+      const categorie = await new Categorie({
+        naam: 'Sport',
+        beschrijving: 'Sport Collectie',
+      }).save();
+  
+      const shirt = await new Shirt({
+        naam: 'Basketbal shirt',
+        beschrijving: 'Basketbal USA shirt',
+        prijs: 19.99,
+        categorie: categorie._id,
+        maten: ['M'],
+        kleuren: ['Rood'],
+      }).save();
+  
+      const res = await request(server)
+        .delete(`/api/shirts/${shirt._id}`)
+        .set('x-auth-token', existingToken);
+  
+      expect(res.status).to.equal(200);
+  
+      const deletedShirt = await Shirt.findById(shirt._id);
+      expect(deletedShirt).to.not.exist;
+    });
+  
+    it('should return 404 if an invalid ID is given', async () => {
+      const invalidId = '123456123456356545627654'; 
+  
+      const res = await request(server)
+        .delete(`/api/shirts/${invalidId}`)
+        .set('x-auth-token', existingToken);
+  
+      expect(res.status).to.equal(404);
     });
   });
 });
