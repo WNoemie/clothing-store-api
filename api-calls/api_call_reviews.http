@@ -1,6 +1,6 @@
 # Review Calls #
 
-@base_url=http://localhost:3000/api/reviews
+@base_url=http://34.77.228.196:3000/api/reviews
 
 ###
 GET {{base_url}}

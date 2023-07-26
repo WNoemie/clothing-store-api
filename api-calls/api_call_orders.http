@@ -1,6 +1,6 @@
 # Order Calls #
 
-@base_url=http://localhost:3000/api/orders
+@base_url=http://34.77.228.196:3000/api/orders
 
 get {{base_url}}
 Content-Type: application/json

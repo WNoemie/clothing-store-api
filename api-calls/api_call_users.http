@@ -1,6 +1,6 @@
 #User calls#
 
-@base_url=http://localhost:3000/api/users
+@base_url=http://34.77.228.196:3000/api/users
 
 
 ###
