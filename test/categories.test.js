@@ -133,8 +133,8 @@ describe('Categories Routes', () => {
     it('should return 404 if an id is not valid', async () => {
       // Create a test category
       const testCategory = new Categorie({
-        naam: 'Test Category',
-        beschrijving: 'Test Description',
+        naam: 'Herfst categorie',
+        beschrijving: 'Leuke herfst!',
       });
       await testCategory.save();
 
@@ -150,7 +150,32 @@ describe('Categories Routes', () => {
     });
   });
   
+  describe('DELETE /api/categories/:id', () => {
+    it('should delete a category if a valid id is provided', async () => {
 
+      const category = await new Categorie({
+        naam: 'Herfst categorie',
+        beschrijving: 'Leuke herfst!',
+      }).save();
+
+      const res = await request(server)
+        .delete(`/api/categories/${category._id}`)
+        .set('x-auth-token', existingToken); 
+
+      expect(res.status).to.equal(200);
+
+      const deletedCategory = await Categorie.findById(category._id);
+      expect(deletedCategory).to.not.exist;
+    });
+
+    it('should return 404 if an invalid ID is provided', async () => {
+      const res = await request(server)
+        .delete('/api/categories/invalid-id')
+        .set('x-auth-token', existingToken);
+
+      expect(res.status).to.equal(404);
+    });
+  });
   
 
 });
