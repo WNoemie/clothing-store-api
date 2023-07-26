@@ -2,6 +2,7 @@
 const request = require('supertest');
 const { expect } = require('chai');
 const { Categorie } = require('../models/categorie');
+const { Shirt } = require('../models/shirt');
 const existingToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc';
 
 let server; 
@@ -11,20 +12,27 @@ describe('Categories Routes', () => {
   });
 
   afterEach(async () => {
-    await Categorie.deleteMany({});
+    await Shirt.deleteMany({});
+  await Categorie.deleteMany({});
     server.close();
   });
 
   describe('GET /api/categories', () => {
+    beforeEach(async () => {
+      const categorie = new Categorie({
+        naam: 'Winter',
+        beschrijving: 'Winter Collectie',
+      });
+      await categorie.save();
+    });
+
     it('should return all categories from db', async () => {
-      await Categorie.insertMany([
-        { naam: 'Winter', beschrijving: 'Winter Collecite' },
-        { naam: 'Zomer', beschrijving: 'Zomer Collectie' },
-      ]);
       const res = await request(server).get('/api/categories');
+
       expect(res.status).to.equal(200);
-      expect(res.body[0].naam).to.equal('Winter');
-      expect(res.body[1].naam).to.equal('Zomer');
+      expect(res.body).to.be.an('array');
+      expect(res.body[0].naam).to.equal('Winter'); 
+      expect(res.body[0].beschrijving).to.equal('Winter Collectie');
     });
   });
 
