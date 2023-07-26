@@ -58,7 +58,7 @@ describe('Shirt Routes', () => {
         naam: 'Test Shirt',
         beschrijving: 'Test Shirt Description',
         prijs: 19.99,
-        categorie: categorieShirt._id, // Use the correct variable name here (categorieShirt)
+        categorie: categorieShirt._id,
         maten: ['XL'],
         kleuren: ['Red'],
       }).save();
@@ -80,6 +80,44 @@ describe('Shirt Routes', () => {
       const res = await request(server).get(`/api/shirts/${invalidShirtId}`);
   
       expect(res.status).to.equal(404);
+    });
+  });
+
+
+  describe('POST /api/shirts', () => {
+    it('should create a new shirt if request is valid', async () => {
+        const categorie = await new Categorie({
+            naam: 'Sport',
+            beschrijving: 'Sport Collectie',
+          }).save();
+      
+        const shirtData = {
+        naam: 'Basketbal shirt',
+        beschrijving: 'Basketbal USA shirt',
+        prijs: 19.99,
+        categorie: categorie._id, 
+        maten: ['M'],
+        kleuren: ['Red'],
+      };
+
+      const res = await request(server)
+        .post('/api/shirts')
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(shirtData);
+
+      expect(res.status).to.equal(200);
+      expect(res.body.name).to.equal(shirtData.name);
+    });
+
+    it('should return 400 if request is invalid', async () => {
+      const res = await request(server)
+        .post('/api/shirts')
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send({});
+
+      expect(res.status).to.equal(400);
     });
   });
 });
