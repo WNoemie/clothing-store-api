@@ -84,6 +84,73 @@ describe('Categories Routes', () => {
     });
   });
 
+  describe('PUT /api/categories/:id', () => {
+    it('should update a category if a valid id and request are given', async () => {
+      const testCategory = new Categorie({
+        naam: 'Test Category',
+        beschrijving: 'Test Description',
+      });
+      await testCategory.save();
+
+      const updatedCategoryData = {
+        naam: 'Updated Category',
+        beschrijving: 'Updated Description',
+      };
+
+      const res = await request(server)
+        .put(`/api/categories/${testCategory._id}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken) 
+        .send(updatedCategoryData);
+
+      expect(res.status).to.equal(200);
+      expect(res.body.naam).to.equal(updatedCategoryData.naam);
+      expect(res.body.beschrijving).to.equal(updatedCategoryData.beschrijving);
+
+      const updatedCategory = await Categorie.findById(testCategory._id);
+      expect(updatedCategory).to.exist;
+      expect(updatedCategory.naam).to.equal(updatedCategoryData.naam);
+      expect(updatedCategory.beschrijving).to.equal(updatedCategoryData.beschrijving);
+    });
+
+    it('should return 404 if an invalid od is provided', async () => {
+      const invalidId = '123456789123456789123456'; 
+
+      const updatedCategoryData = {
+        naam: 'Updated Category',
+        beschrijving: 'Updated Description',
+      };
+
+      const res = await request(server)
+        .put(`/api/categories/${invalidId}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken) 
+        .send(updatedCategoryData);
+
+      expect(res.status).to.equal(404);
+    });
+
+    it('should return 404 if an id is not valid', async () => {
+      // Create a test category
+      const testCategory = new Categorie({
+        naam: 'Test Category',
+        beschrijving: 'Test Description',
+      });
+      await testCategory.save();
+
+      const invalidData = { naam: 'Updated Category' }; //zonder beschrijving = niet compleet
+
+      const res = await request(server)
+        .put(`/api/categories/${testCategory._id}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken) 
+        .send(invalidData);
+
+      expect(res.status).to.equal(400);
+    });
+  });
+  
+
   
 
 });
