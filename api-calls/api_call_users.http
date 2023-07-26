@@ -17,13 +17,11 @@ Content-Type: application/json
 ###
 get {{base_url}}/me
 Content-Type: application/json
-x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYmU5YmQ4N2M4ODc1Zjk5ODUyMzUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjIyNzN9.JTuxJ7oNExSD1vkXAKIwU4tj6eukvIOtTBVNwK3M6sU
-
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
 ###
 delete {{base_url}}/64be8e3ed0850c050fe0608b
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYmU5YmQ4N2M4ODc1Zjk5ODUyMzUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjIyNzN9.JTuxJ7oNExSD1vkXAKIwU4tj6eukvIOtTBVNwK3M6sU
-
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
 
 ###
 post {{base_url}}
@@ -39,4 +37,4 @@ Content-Type: application/json
 #### enkel deleten met admin rechten (access denied)
 delete {{base_url}}/64be8e6859bee0e62dea00c1
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYzI3ZjFhODc0ZDU4YjQ3ZmE2YjkiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjMyNjF9.KZgl-AYf_DrQ0L7b5xV7nkf0NMv0ETtWpcxMSXLmBj8
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc

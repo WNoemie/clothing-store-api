@@ -12,18 +12,17 @@ get {{base_url}}/64bed6d421c56548c5d7f5f4
 
 POST {{base_url}}
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjI4Mzg5fQ.nLNvX89zZOTEhC3XwwAWO24FFmEHEtnPEvQxRFunc44
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
 
 {
-  "naam": "Lente",
-  "beschrijving": "Lente Collectie"
+  "naam": "Herfst",
+  "beschrijving": "Herfst Collectie"
 }
 
 ###
 PUT {{base_url}}/64bed6d421c56548c5d7f5f4
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2NTQ4YzVkN2Y1ZjEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkwMjI4Mzg5fQ.nLNvX89zZOTEhC3XwwAWO24FFmEHEtnPEvQxRFunc44
-
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
 {
   "naam": "Winter2",
   "beschrijving": "Winter2 Collectie"
@@ -31,6 +30,6 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDY5ZTIxYzU2N
 
 
 ### Auth en Admin
-DELETE {{base_url}}/64bed72b77a492a9c226e26c
+DELETE {{base_url}}/64c0f4f96f01501c3cf29eeb
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlZDEyODJiOGFjOWEyMGNmMThjNzQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAyMjg4Mjd9.qAEDk9rYJFlZfq0Uf-uCOirCukjyTBQagPjcRdrumXA
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
