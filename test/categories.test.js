@@ -27,6 +27,21 @@ describe('Categories Routes', () => {
     });
   });
 
+  describe('GET /api/categories/:id', () => {
+    it('should return a category/id', async () => {
+      const category = await new Categorie({
+        naam: 'Winter',
+        beschrijving: 'Winter Collectie',
+      }).save();
+
+      const res = await request(server).get(`/api/categories/${category._id}`);
+
+      expect(res.status).to.equal(200);
+      expect(res.body.naam).to.equal('Winter');
+      expect(res.body.beschrijving).to.equal('Winter Collectie');
+    });
+  });
+
   
 
 });
