@@ -13,7 +13,7 @@ describe('Categories Routes', () => {
 
   afterEach(async () => {
     await Shirt.deleteMany({});
-  await Categorie.deleteMany({});
+    await Categorie.deleteMany({});
     server.close();
   });
 

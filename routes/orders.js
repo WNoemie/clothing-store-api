@@ -7,8 +7,9 @@ const auth = require('../middleware/auth');
 router.get('/', auth, async (req, res) => {
     try {
       const userId = req.user._id;
-      const orders = await Order.find({ user: userId });
+      const orders = await Order.find({ user: userId }).populate('shirts.shirt');;
       res.send(orders);
+
     } catch (error) {
       res.status(500).send('Error bij het ophalen van orders.');
     }
