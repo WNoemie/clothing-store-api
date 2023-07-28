@@ -111,5 +111,42 @@ describe('Orders Routes', () => {
     });
   });
 
- 
+  describe('POST /api/orders', () => {
+    it('should create a new order for the aauthenticated user', async () => {
+        const orderData = {
+            user: user._id.toString(),
+            shirts: [
+              { shirt: shirt1._id.toString(), quantity: 2 },
+              { shirt: shirt2._id.toString(), quantity: 1 },
+            ],
+            totalPrice: 60,
+          };
+  
+      const res = await request(server)
+        .post('/api/orders')
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(orderData);
+  
+      expect(res.status).to.equal(200);
+      expect(res.body.totalPrice).to.equal(60);
+  
+      const savedOrder = await Order.findById(res.body._id);
+      expect(savedOrder).to.exist;
+
+    });
+  
+    it('should return 400 if the order data is not valid', async () => {
+      const invalidOrderData = {};
+  
+      const res = await request(server)
+        .post('/api/orders')
+        .set('x-auth-token', existingToken)
+        .send(invalidOrderData);
+  
+      expect(res.status).to.equal(400);
+    });
+  });
+  
+  
 });
