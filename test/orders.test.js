@@ -147,6 +147,69 @@ describe('Orders Routes', () => {
       expect(res.status).to.equal(400);
     });
   });
+
+  describe('PUT /api/orders/:id', () => {
+    it('should update an order for the authenticated user', async () => {
+      const updatedOrderData = {
+        user: user._id.toString(),
+        shirts: [
+          { shirt: shirt1._id.toString(), quantity: 3 },
+          { shirt: shirt2._id.toString(), quantity: 2 },
+        ],
+        totalPrice: 100,
+      };
+  
+      const res = await request(server)
+        .put(`/api/orders/${order._id}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send(updatedOrderData);
+  
+      expect(res.status).to.equal(200);
+      expect(res.body.totalPrice).to.equal(100);
+  
+    });
+  
+    it('should return 404 if the order is not found', async () => {
+      const invalidId = '123456152345676543212345';
+  
+      const res = await request(server)
+        .put(`/api/orders/${invalidId}`)
+        .set('Content-type', 'application/json')
+        .set('x-auth-token', existingToken)
+        .send({});
+  
+      expect(res.status).to.equal(404);
+      expect(res.text).to.equal('Order niet gevonden.');
+    });
+  });
+
+  describe('DELETE /api/orders/:id', () => {
+    it('should delete an order for the authenticated user', async () => {
+      const res = await request(server)
+        .delete(`/api/orders/${order._id}`)
+        .set('x-auth-token', existingToken);
+  
+      expect(res.status).to.equal(200);
+      expect(res.body._id).to.equal(order._id.toString());
+  
+      const deletedOrder = await Order.findById(order._id);
+      expect(deletedOrder).to.be.null;
+    });
+  
+    it('should return 404 if the order is not found', async () => {
+      const invalidId = '123456152345676543212345';
+  
+      const res = await request(server)
+        .delete(`/api/orders/${invalidId}`)
+        .set('x-auth-token', existingToken);
+  
+      expect(res.status).to.equal(404);
+      expect(res.text).to.equal('Order niet gevonden.');
+    });
+  });
+  
+  
   
   
 });
