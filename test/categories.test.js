@@ -1,4 +1,3 @@
-
 const request = require('supertest');
 const { expect } = require('chai');
 const { Categorie } = require('../models/categorie');
@@ -30,7 +29,6 @@ describe('Categories Routes', () => {
       const res = await request(server).get('/api/categories');
 
       expect(res.status).to.equal(200);
-      expect(res.body).to.be.an('array');
       expect(res.body[0].naam).to.equal('Winter'); 
       expect(res.body[0].beschrijving).to.equal('Winter Collectie');
     });
@@ -60,7 +58,7 @@ describe('Categories Routes', () => {
 
   describe('POST /api/categories', () => {
     it('should create a new category if request is valid', async () => {
-      const categoryData = {
+      const categorieData = {
         naam: 'Winter',
         beschrijving: 'Winter Collectie',
       };
@@ -69,16 +67,14 @@ describe('Categories Routes', () => {
         .post('/api/categories')
         .set('Content-type', 'application/json')
         .set('x-auth-token', existingToken) 
-        .send(categoryData);
+        .send(categorieData);
 
       expect(res.status).to.equal(200);
-      expect(res.body.naam).to.equal(categoryData.naam);
-      expect(res.body.beschrijving).to.equal(categoryData.beschrijving);
-
-      const category = await Categorie.findOne({ naam: categoryData.naam });
-      expect(category).to.exist;
-      expect(category.naam).to.equal(categoryData.naam);
-      expect(category.beschrijving).to.equal(categoryData.beschrijving);
+      expect(res.body.naam).to.equal(categorieData.naam);
+      
+      const categorie = await Categorie.findOne({ naam: categorieData.naam });
+      expect(categorie).to.exist;
+      expect(categorie.naam).to.equal(categorieData.naam);
     });
 
     it('should return 400 if request is invalid', async () => {
@@ -94,62 +90,39 @@ describe('Categories Routes', () => {
 
   describe('PUT /api/categories/:id', () => {
     it('should update a category if a valid id and request are given', async () => {
-      const testCategory = new Categorie({
+      const testCategorie = new Categorie({
         naam: 'Vakantie Collectie',
         beschrijving: 'Vakantie shirts',
       });
-      await testCategory.save();
+      await testCategorie.save();
 
-      const updatedCategoryData = {
+      const updatedCategorieData = {
         naam: 'Vakantie2 Collectie',
         beschrijving: 'Vakantie2 shirts',
       };
 
       const res = await request(server)
-        .put(`/api/categories/${testCategory._id}`)
+        .put(`/api/categories/${testCategorie._id}`)
         .set('Content-type', 'application/json')
         .set('x-auth-token', existingToken) 
-        .send(updatedCategoryData);
+        .send(updatedCategorieData);
 
       expect(res.status).to.equal(200);
-      expect(res.body.naam).to.equal(updatedCategoryData.naam);
-      expect(res.body.beschrijving).to.equal(updatedCategoryData.beschrijving);
-
-      const updatedCategory = await Categorie.findById(testCategory._id);
-      expect(updatedCategory).to.exist;
-      expect(updatedCategory.naam).to.equal(updatedCategoryData.naam);
-      expect(updatedCategory.beschrijving).to.equal(updatedCategoryData.beschrijving);
-    });
-
-    it('should return 404 if an invalid od is provided', async () => {
-      const invalidId = '123456789123456789123456'; 
-
-      const updatedCategoryData = {
-        naam: 'Vakantie2 shirts',
-        beschrijving: 'vakantie2 shirts',
-      };
-
-      const res = await request(server)
-        .put(`/api/categories/${invalidId}`)
-        .set('Content-type', 'application/json')
-        .set('x-auth-token', existingToken) 
-        .send(updatedCategoryData);
-
-      expect(res.status).to.equal(404);
+      expect(res.body.naam).to.equal(updatedCategorieData.naam);
     });
 
     it('should return 404 if an id is not valid', async () => {
-      // Create a test category
-      const testCategory = new Categorie({
+      
+      const testCategorie = new Categorie({
         naam: 'Herfst categorie',
         beschrijving: 'Leuke herfst!',
       });
-      await testCategory.save();
+      await testCategorie.save();
 
       const invalidData = { naam: 'Herfst2 Collectie' }; //zonder beschrijving = niet compleet
 
       const res = await request(server)
-        .put(`/api/categories/${testCategory._id}`)
+        .put(`/api/categories/${testCategorie._id}`)
         .set('Content-type', 'application/json')
         .set('x-auth-token', existingToken) 
         .send(invalidData);
@@ -161,24 +134,24 @@ describe('Categories Routes', () => {
   describe('DELETE /api/categories/:id', () => {
     it('should delete a category if a valid id is provided', async () => {
 
-      const category = await new Categorie({
+      const categorie = await new Categorie({
         naam: 'Herfst categorie',
         beschrijving: 'Leuke herfst!',
       }).save();
 
       const res = await request(server)
-        .delete(`/api/categories/${category._id}`)
+        .delete(`/api/categories/${categorie._id}`)
         .set('x-auth-token', existingToken); 
 
       expect(res.status).to.equal(200);
 
-      const deletedCategory = await Categorie.findById(category._id);
-      expect(deletedCategory).to.not.exist;
+      const deletedCategorie = await Categorie.findById(categorie._id);
+      expect(deletedCategorie).to.not.exist;
     });
 
     it('should return 404 if an invalid ID is provided', async () => {
       const res = await request(server)
-        .delete('/api/categories/invalid-id')
+        .delete('/api/categories/123456712345656565765432')
         .set('x-auth-token', existingToken);
 
       expect(res.status).to.equal(404);

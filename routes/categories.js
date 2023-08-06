@@ -48,16 +48,16 @@ router.get('/', async (req, res) => {
       const { error } = validateCategorie(req.body);
       if (error) return res.status(400).send(error.details[0].message);
   
-      const categorie = await Categorie.findByIdAndUpdate(
-        req.params.id,
+      const categorie = await Categorie.findByIdAndUpdate(req.params.id,
         {
           naam: req.body.naam,
           beschrijving: req.body.beschrijving,
         },
-        { new: true }
+        { new: true } //stuur geupdtate object terug
       );
   
       if (!categorie) return res.status(404).send('Categorie niet gevonden.');
+
       res.send(categorie);
     } catch (error) {
       res.status(500).send('Error bij het ophalen.');
@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
   });
 
 
-  router.delete('/:id', [auth, admin], async (req, res) => {
+  router.delete('/:id', auth, async (req, res) => {
     try {
       const categorie = await Categorie.findOneAndDelete(req.params.id);
       if (!categorie) return res.status(404).send('Categorie niet gevonden.');

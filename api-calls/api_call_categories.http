@@ -6,7 +6,7 @@
 get {{base_url}}
 
 ###
-get {{base_url}}/64bed6d421c56548c5d7f5f4
+get {{base_url}}/64c0664379b3e4596e917e24
 
 ###
 
@@ -20,16 +20,17 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlN
 }
 
 ###
-PUT {{base_url}}/64bed6d421c56548c5d7f5f4
+PUT {{base_url}}/64cf87a0c469d785d76f2196
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
+
 {
   "naam": "Winter2",
   "beschrijving": "Winter2 Collectie"
 }
 
 
-### Auth en Admin
+### 
 DELETE {{base_url}}/64c0f4f96f01501c3cf29eeb
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc

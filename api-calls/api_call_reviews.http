@@ -16,12 +16,12 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlN
 
 {
   "shirt": "64bfa61412bc3fa297a192c6",
-  "rating": 4,
-  "comment": "This shirt is amazing!"
+  "rating": 5,
+  "comment": "This is great!!"
 }
 
 ###
-PUT {{base_url}}/64bfde85a59898842a8c3bdf
+PUT {{base_url}}/64cf910dc469d785d76f21e3
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGMwNjVjZTc5YjNlNDU5NmU5MTdlMWYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTAzNjcwNzZ9.JBTKNtbrdztoyxmIEoJ_rtwEB5qrhdBKyIOAfnkZquc
 

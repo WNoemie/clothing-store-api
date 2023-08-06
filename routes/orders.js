@@ -37,14 +37,15 @@ router.post('/', auth, async (req, res) => {
     if (error) {
       return res.status(400).send(error.details[0].message);
     }
-    const userId = req.user._id;
 
-    const { shirts, totalPrice } = req.body;
+
+    const { user, shirts, totalPrice } = req.body;
     const order = new Order({
-      user: userId,
+      user: user, 
       shirts: shirts,
       totalPrice: totalPrice,
     });
+    await order.save();
     await order.save();
 
     res.send(order);
@@ -91,6 +92,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     res.send(order);
+    
   } catch (error) {
     res.status(500).send('Error bij het deleten van de order.');
   }
