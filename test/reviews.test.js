@@ -66,6 +66,7 @@ describe('Review Routes', () => {
       const res = await request(server).get(`/api/reviews/${review._id}`);
 
       expect(res.status).to.equal(200);
+      expect(res.body).to.have.property('rating', 5);
     });
 
     it('should return 404 if the review is not found', async () => {
