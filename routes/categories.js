@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
   });
 
 
-  router.delete('/:id', auth, async (req, res) => {
+  router.delete('/:id', [auth, admin], async (req, res) => {
     try {
       const categorie = await Categorie.findOneAndDelete(req.params.id);
       if (!categorie) return res.status(404).send('Categorie niet gevonden.');

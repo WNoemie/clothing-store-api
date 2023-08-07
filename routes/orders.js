@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Order, validateOrder } = require('../models/order');
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 
 router.get('/', auth, async (req, res) => {
@@ -79,7 +80,7 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth,admin], async (req, res) => {
   try {
     
     const userId = req.user._id;

@@ -82,7 +82,7 @@ router.put('/:id', auth,  async (req, res) => {
   }
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth,admin], async (req, res) => {
   try {
     const shirt = await Shirt.findByIdAndRemove(req.params.id);
     if (!shirt) {
