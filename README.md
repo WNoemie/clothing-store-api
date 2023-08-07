@@ -41,7 +41,7 @@ Route die wordt gebruikt voor het aanmaken, bijwerken, etc. van reviews. Een rev
 - GET /reviews Dit endpoint geeft alle beschikbare reviews weer.
 - GET /reviews/:id Dit endpoint geeft de details van een specifieke categorie weer op basis van het opgegeven ID
 - POST /reviews Dit endpoint wordt gebruikt om een nieuwe review aan te maken.  Body bestaat uit een shirt, rating en comment. Om deze endpoint te kunnen gebruiken, moet de gebruiker ingelogd zijn. De review wordt onder de naam van de ingelogde gebruiker geplaatst.  
-- PUT /reviews/:id Dit endpoint wordt gebruikt om een bestaande review bij te werken op basis van het opgegeven ID. De request body bestaat uit een shirt, rating en comment. Om dit endpoint te gebruiken, moet de gebruiker ingelogd zijn. 
+- PUT /reviews/:id Dit endpoint wordt gebruikt om een bestaande review bij te werken op basis van het opgegeven ID. De request body bestaat uit een shirt, rating en comment. Om dit endpoint te gebruiken, moet de gebruiker ingelogd zijn. (Bedoeling was dat een user enkel zijn eigen reviews kan bijwerken, maar bij de test bleef ik maar errors krijgen..)
 - DELETE /reviews/:id Dit endpoint wordt gebruikt om een bestaande review te verwijderen op basis van het opgegeven ID. Om dit endpoint te gebruiken, moet de gebruiker ingelogd zijn.
 
 # Shirts route

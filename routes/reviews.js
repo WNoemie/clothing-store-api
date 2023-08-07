@@ -41,28 +41,59 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
+
 router.put('/:id', auth, async (req, res) => {
   try {
     const { error } = validateReview(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     const { shirt, rating, comment } = req.body;
-    const review = await Review.findByIdAndUpdate(
-      req.params.id,
-      {
-        shirt: shirt,
-        rating: rating,
-        comment: comment,
-      },
-      { new: true }
-    );
+
+    // Find the review by ID
+    const review = await Review.findById(req.params.id);
 
     if (!review) return res.status(404).send('Review niet gevonden.');
-    res.send(review);
+
+    // Check if the review belongs to the authenticated user
+    if (review.user.toString() !== req.user.id) {
+      return res.status(403).send('Unauthorized to update this review.');
+    }
+
+    // Update the review
+    review.shirt = shirt;
+    review.rating = rating;
+    review.comment = comment;
+    const updatedReview = await review.save();
+
+    res.send(updatedReview);
   } catch (error) {
     res.status(500).send('Error bij het updaten van the review.');
   }
 });
+
+
+// router.put('/:id', auth, async (req, res) => {
+//   try {
+//     const { error } = validateReview(req.body);
+//     if (error) return res.status(400).send(error.details[0].message);
+
+//     const { shirt, rating, comment } = req.body;
+//     const review = await Review.findByIdAndUpdate(
+//       req.params.id,
+//       {
+//         shirt: shirt,
+//         rating: rating,
+//         comment: comment,
+//       },
+//       { new: true }
+//     );
+
+//     if (!review) return res.status(404).send('Review niet gevonden.');
+//     res.send(review);
+//   } catch (error) {
+//     res.status(500).send('Error bij het updaten van the review.');
+//   }
+// });
 
 router.delete('/:id', auth, async (req, res) => {
   try {

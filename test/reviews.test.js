@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { expect } = require('chai');
+const mongoose = require('mongoose');
 const { Review } = require('../models/review');
 const { Categorie } = require('../models/categorie');
 const { User } = require('../models/user');
@@ -10,6 +11,7 @@ let server;
 let user;
 let shirt;
 let review;
+
 
 describe('Review Routes', () => {
   before(async () => {
@@ -112,16 +114,18 @@ describe('Review Routes', () => {
     });
   });
 
+  //PUT geeft een error weer..
+
   describe('PUT /api/reviews/:id', () => {
     it('should update a review for the authenticated user', async () => {
-      review = new Review({
+      const review2 = new Review({
         user: user._id,
         shirt: shirt._id,
-        rating: 3,
-        comment: 'Ok, niet perfect',
+        rating: 5,
+        comment: 'Heel mooi!',
       });
-      await review.save();
-
+      await review2.save();
+  
       const updatedReviewData = {
         shirt: shirt._id.toString(),
         rating: 2,
@@ -129,11 +133,11 @@ describe('Review Routes', () => {
       };
 
       const res = await request(server)
-        .put(`/api/reviews/${review._id}`)
+        .put(`/api/reviews/${review2._id}`)
         .set('Content-type', 'application/json')
-        .set('x-auth-token', existingToken)
+        .set('x-auth-token', existingTokenoken) 
         .send(updatedReviewData);
-
+  
       expect(res.status).to.equal(200);
       expect(res.body).to.have.property('rating', 2);
     });
