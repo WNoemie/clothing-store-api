@@ -135,7 +135,7 @@ describe('Review Routes', () => {
       const res = await request(server)
         .put(`/api/reviews/${review2._id}`)
         .set('Content-type', 'application/json')
-        .set('x-auth-token', existingTokenoken) 
+        .set('x-auth-token', existingToken) 
         .send(updatedReviewData);
   
       expect(res.status).to.equal(200);
