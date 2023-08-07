@@ -49,17 +49,14 @@ router.put('/:id', auth, async (req, res) => {
 
     const { shirt, rating, comment } = req.body;
 
-    // Find the review by ID
     const review = await Review.findById(req.params.id);
 
     if (!review) return res.status(404).send('Review niet gevonden.');
 
-    // Check if the review belongs to the authenticated user
     if (review.user.toString() !== req.user.id) {
       return res.status(403).send('Unauthorized to update this review.');
     }
 
-    // Update the review
     review.shirt = shirt;
     review.rating = rating;
     review.comment = comment;
